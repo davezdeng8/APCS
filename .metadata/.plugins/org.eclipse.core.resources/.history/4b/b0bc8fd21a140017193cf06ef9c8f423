@@ -1,0 +1,66 @@
+import java.util.ArrayList;
+
+public class Main {
+
+	public static void main( String[] args ){
+		
+		ArrayList<Square> genlist = new ArrayList<>();
+
+		for(int i=0; i<100; i++){
+			genlist.add(new Square());
+		}
+		
+		Generation gen = new Generation(genlist);
+		Square magic = null;
+		
+		for(int i=0; i<100; i++){
+			for(int j=0; j<gen.length(); j++){
+				if(gen.getSquare(j).findfitness()==0){
+					magic = gen.getSquare(j);
+					break;
+				}
+			}
+			System.out.println(gen.genfit());
+			if(magic == null){
+				gen = gen.offspring();
+			}
+			else{
+				break;
+			}
+			
+		}
+		if(magic == null){
+			System.out.println("No magic square were found in 100 generations");
+		}
+		else{
+		magic.print();
+		}
+		
+		
+		/*
+		Square test = new Square();
+		test.print();
+		System.out.println(test.findfitness());
+
+		
+		Square test1 = new Square();
+		test1.print();
+		System.out.println(test1.findfitness());
+
+		
+		Mate mate1 = new Mate(test, test1);
+		mate1.inverse();
+
+		Square off1 = mate1.offspring1();
+		Square off2 = mate1.offspring2();
+		
+		off1.print();
+		off2.print();
+		
+		System.out.println(off1.findfitness());
+		System.out.println(off2.findfitness());
+		*/
+		
+	}
+	
+}

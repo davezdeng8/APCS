@@ -1,0 +1,80 @@
+import java.util.ArrayList;
+
+public class Mate {
+	
+	private Square square1;
+	private Square square2;
+	
+	public Mate(){}
+	
+	public Mate(Square squarea, Square squareb){
+		square1=squarea;
+		square2=squareb;
+	}
+	
+	public Square offspring1(){
+		
+	// Creating the inverse squares
+		ArrayList<Integer> inverse1 = new ArrayList<>();
+		for(int i=1; i<=16; i++){
+			int temp = 0;
+			for(int j=0; j<16; j++){
+				if (square1.getvalue(j)>i)
+					temp++;
+				else if (square1.getvalue(j)==i)
+					break;
+				else{}	
+			}
+			inverse1.add(temp);
+		}
+		
+		ArrayList<Integer> inverse2 = new ArrayList<>();
+		for(int i=1; i<=16; i++){
+			int temp = 0;
+			for(int j=0; j<16; j++){
+				if (square2.getvalue(j)>i)
+					temp++;
+				else if (square2.getvalue(j)==i)
+					break;
+				else{}	
+			}
+			inverse2.add(temp);
+		}
+		
+	//Crossing over
+		
+		int crosspoint = (int) (Math.random()*16);
+		
+		ArrayList<Integer> offinverse1 = new ArrayList<>();
+		ArrayList<Integer> offinverse2 = new ArrayList<>();
+		
+		for (int i=0; i<=crosspoint; i++){
+			offinverse1.add(inverse1.get(i));
+			offinverse2.add(inverse2.get(i));
+		}
+		
+		for (int j=crosspoint+1; j<16; j++){
+			offinverse1.add(inverse2.get(j));
+			offinverse2.add(inverse1.get(j));
+		}
+		
+	// reconverting to normal
+		
+		ArrayList<Integer> count = new ArrayList<>();
+		
+		for(int i=0; i<16; i++){
+			count.add(i);
+		}
+		
+		ArrayList<Integer> offspring1 = new ArrayList<>(16);
+		
+		for(int i=0; i<16; i++){
+			int spot = count.get(offinverse1.get(i));
+			offspring1.set(spot, i+1);
+			count.remove(offinverse1.get(i));
+		}
+		
+		
+	}
+
+}

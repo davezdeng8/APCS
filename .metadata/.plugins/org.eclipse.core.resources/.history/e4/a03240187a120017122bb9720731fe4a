@@ -1,0 +1,11 @@
+
+public class Main {
+
+	public static void main( String[] args ){
+		Square test = new Square();
+		test.print();
+		System.out.println(test.findfitness());
+		System.out.println(test.getvalue(0));
+	}
+	
+}

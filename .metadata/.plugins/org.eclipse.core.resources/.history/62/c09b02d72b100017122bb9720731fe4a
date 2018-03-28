@@ -1,0 +1,81 @@
+import java.util.ArrayList;
+
+public class Square {
+
+	private ArrayList<Integer> square = new ArrayList<>();
+	private int squarenumber;
+	
+	public void setsquarenumber(int number) {
+		squarenumber=number;
+	}
+	
+	public int getsquarenumber(){
+		return squarenumber;
+	}
+	
+	public void Createsquare() {
+		ArrayList<Integer> numberbank = new ArrayList<>();
+		for (int j=0; j<16; j++){
+			numberbank.add(j+1);
+		}
+		for(int i=0; i<16; i++){
+			int set = (int) (Math.random()*numberbank.size());
+			square.add(numberbank.get(set));
+			numberbank.remove(set);
+		}
+	}
+	
+	public int getvalue(int number){
+		return square.get(number);
+	}
+	
+	public ArrayList<Integer> squarearraylist(){
+		return square;
+	}
+	
+	public int findfitness(){
+		int rowdev=0;
+		int coldev=0;
+		int diagdev=0;
+		int fitness=0;
+		
+		for(int ir=0; ir<4; ir++){
+			int sumr = 0;
+			for(int jr=0; jr<4; jr++){
+				sumr = sumr + square.get(4*ir+jr);
+			}
+			rowdev= rowdev + Math.abs(sumr-34);
+		}
+		
+		for(int ic=0; ic<4; ic++){
+			int sumc = 0;
+			for(int jc=0; jc<4; jc++){
+				sumc = sumc + square.get(4*jc+ic);
+			}
+			coldev= coldev + Math.abs(sumc-34);
+		}
+		int sumd1 = 0;
+		for (int id1=0; id1<16; id1=id1+5){
+			sumd1 = sumd1+square.get(id1);
+		}
+		diagdev = Math.abs(sumd1-34);
+		
+		int sumd2 = 0;
+		for (int id2=3; id2<=12; id2=id2+3){
+			sumd2 = sumd2+square.get(id2);
+		}
+		diagdev = diagdev + Math.abs(sumd2-34);
+		
+		fitness = rowdev+coldev+diagdev;
+		
+		return fitness;
+	}
+	
+	public void print(){
+		
+		for (int i = 0; i<16; i=i+4){
+			System.out.println(square.subList(i, i+4));
+		}
+	}
+	
+}

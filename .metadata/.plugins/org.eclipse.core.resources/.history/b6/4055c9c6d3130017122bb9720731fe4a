@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+
+public class Main {
+
+	public static void main( String[] args ){
+		
+		ArrayList<Square> gen1 = new ArrayList<>();
+
+		for(int i=0; i<50; i++){
+			gen1.add(new Square());
+		}
+		
+		ArrayList<Integer> lowlist = new ArrayList<>();
+		ArrayList<Square> parent1 = new ArrayList<>();
+		for(int i=0; i<5; i++){
+			int low = gen1.get(0).findfitness();
+			int lowindex = 0;
+			for(int j=1; j<50; j++){
+				if (low>gen1.get(j).findfitness()){
+					low = gen1.get(j).findfitness();
+					lowindex = j;
+					parent1.add(gen1.get(j));
+				}
+			}
+			lowlist.add(lowindex);
+			
+		}
+		
+		/*
+		Square test = new Square();
+		test.print();
+		System.out.println(test.findfitness());
+
+		
+		Square test1 = new Square();
+		test1.print();
+		System.out.println(test1.findfitness());
+
+		
+		Mate mate1 = new Mate(test, test1);
+		mate1.inverse();
+
+		Square off1 = mate1.offspring1();
+		Square off2 = mate1.offspring2();
+		
+		off1.print();
+		off2.print();
+		
+		System.out.println(off1.findfitness());
+		System.out.println(off2.findfitness());
+		*/
+		
+	}
+	
+}

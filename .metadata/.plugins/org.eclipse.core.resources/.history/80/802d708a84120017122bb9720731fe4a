@@ -1,0 +1,27 @@
+
+public class Main {
+
+	public static void main( String[] args ){
+		Square test = new Square();
+		test.print();
+		
+		Square test1 = new Square();
+		test1.print();
+		
+		Mate mate1 = new Mate(test, test1);
+		System.out.println(mate1.getcrosspoint());
+		mate1.inverse();
+		
+		System.out.println(mate1.getinverse1());
+		System.out.println(mate1.getinverse2());
+
+		Square off1 = mate1.offspring1();
+		Square off2 = mate1.offspring2();
+		
+		off1.print();
+		off2.print();
+		
+		
+	}
+	
+}

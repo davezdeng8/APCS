@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+
+public class Mate {
+	
+	private Square square1;
+	private Square square2;
+	
+	public Square offspring1(){
+		ArrayList<Integer> inverse1 = new ArrayList<>();
+		for(int i=1; i<=16; i++){
+			int temp = 0;
+			for(int j=0; j<16; j++){
+				if (square1.getvalue(j)>i)
+					temp++;
+				else if (square1.getvalue(j)==i)
+					break;
+				else{}	
+			}
+			inverse1.add(temp);
+		}
+		
+		ArrayList<Integer> inverse2 = new ArrayList<>();
+		for(int i=1; i<=16; i++){
+			int temp = 0;
+			for(int j=0; j<16; j++){
+				if (square1.getvalue(j)>i)
+					temp++;
+				else if (square1.getvalue(j)==i)
+					break;
+				else{}	
+			}
+			inverse2.add(temp);
+		}
+		
+	}
+
+}
